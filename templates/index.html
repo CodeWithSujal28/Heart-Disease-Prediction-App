@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Disease Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="main-container">
+    <div class="card">
+
+        <h1>❤️Heart Disease Prediction Web App by Sujal Mondal🙌</h1>
+        <p class="subtitle">Fill patient details to predict heart disease risk</p>
+
+        <form method="POST">
+
+            <div class="field">
+                <label>Age (in years): <span id="ageValue">50</span></label>
+                <input type="range" name="age" min="20" max="90" value="50"
+                       oninput="ageValue.innerText = this.value">
+            </div>
+
+            <div class="field">
+                <label>Sex (Biological gender)</label>
+                <select name="sex">
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Chest Pain Type (Type of chest pain experienced)</label>
+                <select name="cp">
+                    <option value="0">Typical Angina</option>
+                    <option value="1">Atypical Angina</option>
+                    <option value="2">Non-anginal Pain</option>
+                    <option value="3">Asymptomatic</option>
+                </select>
+            </div>
+
+            <div class="grid">
+                <div class="field">
+                    <label>Resting Blood Pressure (mm Hg)</label>
+                    <input type="number" name="trestbps" required>
+                </div>
+
+                <div class="field">
+                    <label>Cholesterol Level (mg/dl)</label>
+                    <input type="number" name="chol" required>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="field">
+                    <label>Fasting Blood Sugar > 120 mg/dl (Diabetes indicator)</label>
+                    <select name="fbs">
+                        <option value="1">High</option>
+                        <option value="0">Normal</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>Rest ECG (Electrocardiogram result)</label>
+                    <select name="restecg">
+                        <option value="0">Normal</option>
+                        <option value="1">ST-T Wave Abnormality</option>
+                        <option value="2">Left Ventricular Hypertrophy</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="field">
+                    <label>Maximum Heart Rate Achieved</label>
+                    <input type="number" name="thalach" required>
+                </div>
+
+                <div class="field">
+                    <label>Exercise Induced Angina (Chest pain during exercise)</label>
+                    <select name="exang">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="field">
+                    <label>ST Depression (Oldpeak value)</label>
+                    <input type="number" step="any" name="oldpeak" required>
+                </div>
+
+                <div class="field">
+                    <label>Slope (Slope of ST segment)</label>
+                    <select name="slope">
+                        <option value="0">Upsloping</option>
+                        <option value="1">Flat</option>
+                        <option value="2">Downsloping</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="field">
+                    <label>Number of Major Blood Vessels (0–3)</label>
+                    <select name="ca">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>Thalassemia (Blood disorder test result)</label>
+                    <select name="thal">
+                        <option value="1">Normal</option>
+                        <option value="2">Fixed Defect</option>
+                        <option value="3">Reversible Defect</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="predict-btn">Predict</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result-box">{{ prediction }}</div>
+            <a href="/" class="refresh-btn">🔄 New Prediction</a>
+        {% endif %}
+
+    </div>
+</div>
+
+</body>
+</html>
